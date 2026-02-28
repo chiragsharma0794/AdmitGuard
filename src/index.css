@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --brand-purple: #6366f1;
+  --brand-grey: #64748b;
+}
+
+.dark {
+  --brand-purple: #818cf8;
+  --brand-grey: #94a3b8;
+}
+
+@layer utilities {
+  .ag-gradientText {
+    background: linear-gradient(to right, var(--brand-purple), var(--brand-grey));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+
+  .ag-shimmerOnHover {
+    transition: background-position 0.3s ease;
+  }
+
+  .ag-shimmerOnHover:hover,
+  .ag-shimmerOnHover:focus-visible {
+    background-size: 200% auto;
+    background-image: linear-gradient(
+      to right,
+      var(--brand-purple) 0%,
+      var(--brand-grey) 45%,
+      rgba(255, 255, 255, 0.6) 50%,
+      var(--brand-grey) 55%,
+      var(--brand-purple) 100%
+    );
+    animation: ag-shimmer 1.95s ease-in-out infinite;
+    outline: none;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .logo-svg {
+    width: 28px;
+    height: 28px;
+    color: var(--brand-purple);
+  }
+
+  @media (max-width: 640px) {
+    .logo-svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @keyframes ag-shimmer {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ag-shimmerOnHover:hover,
+    .ag-shimmerOnHover:focus-visible {
+      animation: none;
+      background-image: linear-gradient(to right, var(--brand-purple), var(--brand-grey));
+    }
+  }
+}
